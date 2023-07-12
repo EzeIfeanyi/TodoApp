@@ -30,7 +30,12 @@ namespace TodoApp
 
         public void DeleteById(int Id)
         {
-            Todo todo = _todoSet.FirstOrDefault(item => item.Id == Id);
+            Todo? todo = _todoSet.FirstOrDefault(item => item.Id == Id);
+
+            if (todo == null)
+            {
+                throw new Exception("Could not delete Item as it does not exist");
+            }
 
             DeleteTodo(todo);
         }
@@ -43,8 +48,8 @@ namespace TodoApp
         public void UpdateTodo(Todo item)
         {
             var todo = (from t in GetAllTodos()
-                       where t.Id == item.Id
-                       select t).First();
+                        where t.Id == item.Id
+                        select t).First();
 
             DeleteTodo(todo);
             AddTodo(item);

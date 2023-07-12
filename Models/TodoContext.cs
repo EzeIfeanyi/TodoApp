@@ -13,28 +13,28 @@ namespace TodoApp.Models
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseInMemoryDatabase("TodoApp");
+            optionsBuilder.UseSqlServer("Server=DESKTOP-QB15QEM\\MSSQLSERVER01;Database=TodoApp;Trusted_Connection=True;TrustServerCertificate=True;MultipleActiveResultSets=true");
         }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<Todo>().HasData(
-                new Todo
-                {
-                    Id = 1,
-                    Title = "Jogging",
-                    Description = "Run through the field",
-                    CreatedDate = DateTime.Now,
-                },
-                new Todo
-                {
-                    Id= 2,
-                    Title = "Cleaning",
-                    Description = "Clean the entire house",
-                    CreatedDate = DateTime.Now,
-                }
-            );
-        }
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
+        //    base.OnModelCreating(modelBuilder);
+        //    modelBuilder.Entity<Todo>().HasData(
+        //        new Todo
+        //        {
+        //            Id = 1,
+        //            Title = "Jogging",
+        //            Description = "Run through the field",
+        //            CreatedDate = DateTime.Now,
+        //        },
+        //        new Todo
+        //        {
+        //            Id= 2,
+        //            Title = "Cleaning",
+        //            Description = "Clean the entire house",
+        //            CreatedDate = DateTime.Now,
+        //        }
+        //    );
+        //}
     }
 }
